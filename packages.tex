@@ -1,0 +1,87 @@
+\usepackage{warning} % for warning messages
+
+%Alternative to \input glyphtounicode.tex
+%Enables copy and paste of ligatures, such as appearing in "workflow"
+\usepackage{cmap}
+
+\usepackage[ngerman,british]{babel} % language selection
+\usepackage[T1]{fontenc} % western languages encoding
+\usepackage[utf8]{inputenc} % set encoding to UTF-8
+\DeclareUnicodeCharacter{1F3C6}{\faTrophy}
+
+% \usepackage{cite}
+\usepackage[sort&compress,square,numbers]{natbib}
+
+\usepackage{longtable}
+
+\usepackage{multicol}
+\usepackage{multirow}
+
+\usepackage[font=small]{caption}
+
+\usepackage{environ}
+
+% figures only appear after their first use, never ever before
+\usepackage{flafter}
+
+\usepackage{microtype} % nicer output
+\usepackage{hfoldsty} % nicer output
+\usepackage{lmodern} % use the modern fonts
+\usepackage{charter} % use the charter font
+
+\usepackage[final]{listings} % listings package fuer source code
+
+\usepackage{epigraph} % citations at section start
+\usepackage{rotating} % rotated images and tables
+\usepackage{enumerate} % better enumeration environment
+\usepackage{booktabs} % nice looking tables
+\usepackage{amsmath,amssymb,amsfonts} % math extensions
+\usepackage{marginnote} % notes on the margin of the page
+\usepackage[sharp]{easylist} % lists denoted with the # symbol
+
+\usepackage{mdframed} % show frames (borders)
+
+\usepackage{ifthen} % if and then
+
+\usepackage{dirtree} % folder structures
+
+\usepackage{tocloft}
+
+\usepackage{fontawesome}
+
+\usepackage[automark]{scrpage2} % Kopf- und Fusszeilen-Format mit KOMA-Script
+
+\usepackage{strict} % check for not using undefined environments
+
+\usepackage[strict=true,english=american]{csquotes}
+
+\usepackage[printonlyused]{acronym} % for spelled out acronyms
+\usepackage{todonotes} % show todos in code
+
+\usepackage{relsize} % Set the font size relative to the current font size
+\usepackage{xspace} % Define commands that appear not to eat spaces
+
+\usepackage{mfirstuc} % for capitalization
+
+\usepackage{paralist} % compactenum, compactdesc and compactitem environments
+
+\usepackage{multirow}
+\usepackage{enumitem} % Control layout of itemize, enumerate, description
+\usepackage{makeidx}  % allows for indexgeneration
+
+\usepackage{thmtools}
+
+\usepackage[hyphens]{url} % detection of urls
+\usepackage[
+pdfstartview=Fit,
+pdftitle={TITLE},
+pdfsubject={TOPIC},
+pdfauthor={AUTHOR NAME},
+pdfkeywords={KEYWORD, KEYWORD}
+]{hyperref} % Extensive support for hypertext in LATEX % do not use this for one side ,pdfpagelayout=TwoPageRight
+\usepackage[all]{hypcap} % Adjusting the anchors of captions
+\usepackage[hyperpageref]{backref} % print at each citation a link to where it is used
+\usepackage[capitalise,nameinlink]{cleveref} % enable easier referencing as the type is derived from the label target
+
+\usepackage{lipsum}
+

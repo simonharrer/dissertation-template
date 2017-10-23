@@ -1,0 +1,138 @@
+% !TeX spellcheck = en_US
+\RequirePackage[l2tabu, orthodox]{nag}
+
+\documentclass[paper=a4,
+fontsize=13pt,
+%cleardoubleplain,
+%headsepline,
+%liststotoc,
+bibliography=totoc,
+%parskip=half,
+%pointlessnumbers,
+twoside,
+%openright, % only for print version
+hidelinks,
+openany, % no empty pages between chapters
+%draft,
+%smallheadings
+]{scrbook}
+
+\usepackage{marginfit}
+\usepackage{setspace}
+
+%For UBP
+\usepackage{geometry}
+\geometry{tmargin=27mm,bmargin=20mm,left=25mm,right=25mm, marginparwidth=14mm, marginparsep=2mm,bindingoffset=5mm}
+\setlength{\footskip}{30pt}
+
+\usepackage{etoolbox}
+
+\setstretch{1.05} % line separation +1/+2 points
+
+\clubpenalty10000
+\widowpenalty10000
+\displaywidowpenalty=10000
+
+\makeatletter
+\expandafter\patchcmd\csname\string\maketitle\endcsname{\if@twoside}{\iftrue}{}{}
+\makeatother
+
+%for consecutive footnote numbering in the complete document
+\usepackage{chngcntr}
+\counterwithout{footnote}{chapter}
+\hfuzz=2pt
+
+\setcounter{secnumdepth}{3}    % Number subsubsections in the chapters
+\setcounter{tocdepth}{3}       % Put subsubsections in the table of contents
+\input{packages.tex}
+\input{commands.tex}
+
+\usepackage{ragged2e}
+\renewcommand*{\raggedleftmarginnote}{\RaggedLeft}
+\renewcommand*{\raggedrightmarginnote}{\RaggedRight}
+
+% saves almost half a page by removing space between references
+\let\oldbibliography\thebibliography \renewcommand{\thebibliography}[1]{%
+   \oldbibliography{#1}%
+   \setlength{\itemsep}{0pt}%
+}
+
+\makeatletter
+\def\NAT@spacechar{~}% do not break when using citet
+\makeatother
+
+\begin{document}
+
+%UNCOMMENT for no page footers/headers
+%\pagestyle{empty}
+
+% new environment to get rid of hyperref errors
+{
+	\renewcommand*{\thepage}{cover.\arabic{page}}
+
+	\pdfbookmark[0]{Title page}{mytitle}
+	\input{diss_titelblatt}
+	\maketitle
+
+	\frontmatter
+
+	\pdfbookmark[0]{Acknowledgements}{myacks}
+	\input{diss_vorwort.tex}
+}
+
+% parameters for controlling floats
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.7}
+
+% Zusammenfassung
+\cleardoublepage
+\pdfbookmark[0]{Kurzfassung}{myKurzfassung}
+\input{diss_zusammenfassung.tex}
+
+% Summary
+\cleardoublepage
+\pdfbookmark[0]{Abstract}{myAbstract}
+\input{diss_summary.tex}
+
+\cleardoublepage
+\pdfbookmark[0]{Table of Contents}{mytoc}
+\tableofcontents
+\cleardoublepage
+
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+\cleardoublepage
+
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+\cleardoublepage
+
+\def\lstlistlistingname{List of Listings}
+\lstlistoflistings
+\addcontentsline{toc}{chapter}{List of Listings}
+\cleardoublepage\phantomsection
+
+\renewcommand{\listtheoremname}{List of Definitions}
+\listoftheorems[ignoreall,show={defi}]
+\addcontentsline{toc}{chapter}{List of Definitions}
+\cleardoublepage
+
+\newpage
+\chapter*{List of Abbreviations}
+\addcontentsline{toc}{chapter}{List of Abbreviations}
+\input{acronym.tex}
+
+\mainmatter
+\automark[section]{chapter}
+\pagenumbering{arabic}
+
+\input{content.tex}
+
+\appendix
+\input{appendix.tex}
+
+\bibliographystyle{IEEEtranSN}
+\bibliography{references}
+
+\end{document}
